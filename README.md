@@ -1,24 +1,35 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the template of dockerized environment for rails 7.
 
-Things you may want to cover:
+You can create an rails app out of this template at ease.
+<br/><br/>
 
-* Ruby version
+## Environment
+Ruby: 2.75\
+Rails: 7.0.4
+<br/><br/>
 
-* System dependencies
+## Procedures
 
-* Configuration
+1. Clone the app to your local
 
-* Database creation
+2. Replace app name to desired name
+```
+current app name: rails7-postgres
+```
 
-* Database initialization
+2. Build image
+```
+docker compose build
+```
 
-* How to run the test suite
+3. Create database
+```
+docker compose run web bin/rails db:create
+```
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+4. Start container
+```
+docker compose up
+```
