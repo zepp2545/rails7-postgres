@@ -1,0 +1,28 @@
+version: "3.9"
+volumes:
+  tmp:
+  node_modules:
+  bundle:
+  db_data:
+services:
+  db:
+    image: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+  web:
+    build: .
+    command: /bin/sh -c "rm -f /app/tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/myapp
+      - tmp:/myapp/tmp
+      - node_modules:/myapp/node_modules
+      - bundle:/myapp/bundle
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
