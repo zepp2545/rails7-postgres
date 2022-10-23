@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: ecs_deploy_development
+  database: rails7_postgres_development
   host: <%= ENV["POSTGRES_HOST"] %>
   username: <%= ENV["POSTGRES_USER"] %>
   password: <%= ENV["POSTGRES_PASSWORD"] %>
@@ -61,7 +61,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: ecs_deploy_test
+  database: rails7_postgres_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -85,6 +85,6 @@ test:
 #
 production:
   <<: *default
-  database: ecs_deploy_production
-  username: ecs_deploy
-  password: <%= ENV["ECS_DEPLOY_DATABASE_PASSWORD"] %>
+  database: rails7_postgres_production
+  username: rails7_postgres
+  password: <%= ENV["RAILS7_POSTGRES_DATABASE_PASSWORD"] %>
